@@ -1,0 +1,37 @@
+<form action="">
+  <h1>get in touch</h1>
+  <div class="form-wrapper">
+    <div class="input-form">
+      <label for="name">name</label>
+      <input type="text" id="name" required />
+    </div>
+    <div class="input-form">
+      <label for="email">email</label>
+      <input type="email" id="email" required />
+    </div>
+    <div class="input-form">
+      <label for="phone">phone number</label>
+      <input type="phone" id="phone" />
+    </div>
+    <div class="input-form">
+      <label for="subject">subject</label>
+      <select id="subject" name="subject" required>
+        <option value="" disabled selected></option>
+        <option value="job_opportunity">Job Opportunity</option>
+        <option value="project_collaboration">Project Collaboration</option>
+        <option value="feedback">Feedback</option>
+        <option value="other">Other</option>
+      </select>
+      <i class="fa fa-sort-down"></i>
+    </div>
+    <div class="input-form">
+      <label for="message">your message</label><textarea
+        name="message"
+        rows="10"
+        cols="20"
+        required
+      ></textarea>
+    </div>
+  </div>
+  <button type="submit">submit</button>
+</form>

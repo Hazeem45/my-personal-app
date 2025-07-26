@@ -1,0 +1,33 @@
+/* navbar */
+
+nav.navbar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  background-color: #f4f3f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-transform: capitalize !important;
+  padding: 17px 5%;
+  z-index: 3;
+}
+
+.navbar > ul {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  list-style-type: none;
+}
+
+.navbar img {
+  width: 55px;
+  display: grid;
+  place-items: center;
+}
+
+.navbar button {
+  border-radius: 7px;
+  padding: 0.5em 1em;
+  font-weight: 600;
+}

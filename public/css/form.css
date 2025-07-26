@@ -1,0 +1,204 @@
+/* form */
+
+form {
+  margin: 150px 0 55px;
+  margin-bottom: 55px !important;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 75px;
+  height: 110vh;
+}
+
+form > h1 {
+  text-transform: uppercase;
+  align-self: center;
+}
+
+form .form-wrapper {
+  display: grid;
+  gap: 50px;
+}
+
+form div.input-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+form label {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+form input,
+form select,
+form textarea {
+  all: unset;
+  background-color: #ffffff;
+  color: black;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  box-shadow: none;
+}
+
+/* icon down select */
+.input-form:nth-child(4) > i {
+  font-size: 40px;
+  position: absolute;
+  right: 15px;
+  top: 30%;
+}
+
+.input-form:nth-child(4) > select:active + i {
+  transform: translateY(40%) rotate(180deg);
+}
+
+form textarea {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+form > button {
+  font-weight: 700;
+  font-size: 1.5em;
+  padding: 0.5em 2em;
+  border-radius: 40px;
+  align-self: flex-end;
+}
+
+/* project */
+.input-date-wrapper {
+  display: flex;
+  gap: 20px;
+}
+
+.input-date-wrapper .input-form {
+  width: 50%;
+}
+
+.input-form > h4 {
+  margin-bottom: 7px;
+}
+
+.checkbox-container {
+  display: flex;
+  flex-direction: row;
+  width: 90%;
+}
+
+.checkbox-wrapper {
+  display: grid;
+  gap: 25px;
+  width: 50%;
+}
+
+.input-checkbox {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 13px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.input-checkbox input[type="checkbox"] {
+  all: unset;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Kotak custom sebagai pengganti checkbox */
+.input-checkbox span {
+  width: 25px;
+  height: 25px;
+  background: #fff;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  display: inline-block;
+  transition: 0.3s ease;
+  border: none;
+  box-sizing: border-box;
+}
+
+.input-checkbox label {
+  cursor: pointer;
+}
+
+/* style ketika checkbox dicentang */
+.input-checkbox input[type="checkbox"]:checked + span {
+  background-color: blue;
+  border: none;
+  box-shadow: none;
+  position: relative;
+}
+
+/* centang custom */
+.input-checkbox input[type="checkbox"]:checked + span::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+/* image uploader */
+.upload-wrapper {
+  background-color: hsl(0, 0%, 100%);
+  color: black;
+  padding: 1em;
+  border-radius: 5px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: 0.3s ease;
+  padding-left: 0;
+  position: relative;
+}
+
+.upload-wrapper input[type="file"] {
+  opacity: 0;
+  z-index: 2;
+  width: 96.3%;
+  height: 40%;
+  top: 0;
+  position: absolute;
+  cursor: pointer;
+}
+
+.upload-wrapper .custom-text {
+  z-index: 1;
+  pointer-events: none;
+  color: #b2abab;
+  margin-right: auto;
+  border: 1px solid #b2abab;
+  background-color: #e4e4e4;
+  padding: 1em;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+.upload-wrapper i {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.7rem;
+  font-size: 36px;
+  transform: scaleX(-1) rotate(180deg);
+}
