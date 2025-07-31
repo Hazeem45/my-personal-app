@@ -1,18 +1,24 @@
 // src/routes/index.ts
 import { Router } from "express";
+import {
+  deleteProject,
+  editProject,
+  handleAddProject,
+  handleContactForm,
+  showContactPage,
+  showHomePage,
+  showProjectPage,
+} from "../controllers";
+import uploadMulter from "../middlewares/uploadMulter";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-  res.render("home", { title: "Home" });
-});
-
-router.get("/contact", (req, res) => {
-  res.render("contact", { title: "Contact", formStyle: "form" });
-});
-
-router.get("/project", (req, res) => {
-  res.render("project", { title: "My Project", formStyle: "form" });
-});
+router.get("/", showHomePage);
+router.get("/contact", showContactPage);
+router.post("/contact", handleContactForm);
+router.get("/project", showProjectPage);
+router.post("/project", uploadMulter, handleAddProject);
+router.delete("/project/:id", deleteProject);
+router.put("/project/:id", uploadMulter, editProject);
 
 export default router;

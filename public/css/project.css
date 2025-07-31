@@ -1,0 +1,123 @@
+/* project */
+
+.project-container {
+  background-color: #f8f8f8;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 75px 5% 55px;
+}
+
+.project-container h1 {
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 2.25rem;
+  margin-bottom: 75px;
+}
+
+.project-wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+  margin: 0 auto;
+}
+
+.project-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+}
+
+.project-card img {
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  border-radius: 8px;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+  gap: 2rem;
+  flex: 1;
+}
+
+.card-body .title-card h3 {
+  font-weight: bold;
+}
+
+.card-body .title-card p {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.card-body > p {
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* maksimal 3 baris */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.4rem;
+  max-height: calc(1.4rem * 3); /* agar pas 3 baris */
+  color: #333;
+}
+
+.icons {
+  display: flex;
+  gap: 1.5rem;
+  font-size: 24px;
+  margin-top: auto;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.3rem;
+}
+
+.actions button {
+  all: unset;
+  flex: 1;
+  padding: 0.5rem 0;
+  text-align: center;
+  border-radius: 8px;
+  background-color: #0f172a;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.actions button:hover {
+  background-color: hsla(222, 47%, 11%, 0.8);
+}
+
+.no-project-message {
+  text-align: center;
+  color: red;
+  font-style: italic;
+}
+
+@media (max-width: 1200px) {
+  .project-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .project-wrapper {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+}

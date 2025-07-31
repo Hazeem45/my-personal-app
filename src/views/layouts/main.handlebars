@@ -2,10 +2,14 @@
   <head>
     <meta charset="utf-8" />
     <title>{{title}}</title>
+    <link rel="icon" type="image/png" href="/img/icon-dw.png" />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/navbar.css" />
     {{#if formStyle}}
-      <link rel="stylesheet" href="/css/{{formStyle}}.css" />
+      <link rel="stylesheet" href="/css/form.css" />
+    {{/if}}
+    {{#if projectStyle}}
+      <link rel="stylesheet" href="/css/project.css" />
     {{/if}}
     <link
       rel="stylesheet"
@@ -17,7 +21,7 @@
       <ul>
         <li>
           <a href="https://dumbways.id/dashboard/student"><img
-              src="https://dumbways.id/assets/images/brandred.png"
+              src="/img/icon-dw.png"
               alt="dw-logos"
             /></a>
         </li>

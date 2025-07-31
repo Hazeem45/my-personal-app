@@ -1,17 +1,23 @@
-<form action="">
-  <h1>get in touch</h1>
+<form action="/contact" method="post">
+  <div>
+    <h1>get in touch</h1>
+    {{#if success}}
+      <p id="success-message" class="success-box">message sent successfully!</p>
+    {{/if}}
+
+  </div>
   <div class="form-wrapper">
     <div class="input-form">
       <label for="name">name</label>
-      <input type="text" id="name" required />
+      <input type="text" id="name" name="name" required />
     </div>
     <div class="input-form">
       <label for="email">email</label>
-      <input type="email" id="email" required />
+      <input type="email" id="email" name="email" required />
     </div>
     <div class="input-form">
       <label for="phone">phone number</label>
-      <input type="phone" id="phone" />
+      <input type="phone" id="phone" name="phone" />
     </div>
     <div class="input-form">
       <label for="subject">subject</label>
@@ -35,3 +41,5 @@
   </div>
   <button type="submit">submit</button>
 </form>
+
+<script src="/js/successMessage.js"></script>

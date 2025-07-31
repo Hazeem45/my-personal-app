@@ -1,18 +1,42 @@
-<form id="project-form">
-  <h1>add my project</h1>
+<form action={{formAction}} method="post" enctype="multipart/form-data">
+  <div>
+    <h1>
+      {{#if isEdit}}Edit Project
+      {{else}}Add My Project
+      {{/if}}
+    </h1>
+  </div>
   <div class="form-wrapper">
     <div class="input-form">
       <label for="project-name">project name</label>
-      <input type="text" id="project-name" required />
+      <input
+        type="text"
+        id="project-name"
+        name="project_name"
+        value="{{formValues.project_name}}"
+        required
+      />
     </div>
     <div class="input-date-wrapper">
       <div class="input-form">
         <label for="start-date">Start Date</label>
-        <input type="date" id="start-date" name="start-date" required />
+        <input
+          type="date"
+          id="start-date"
+          name="start_date"
+          value="{{formValues.start_date}}"
+          required
+        />
       </div>
       <div class="input-form">
         <label for="end-date">End Date</label>
-        <input type="date" id="end-date" name="end-date" required />
+        <input
+          type="date"
+          id="end-date"
+          name="end_date"
+          value="{{formValues.end_date}}"
+          required
+        />
       </div>
     </div>
     <div class="input-form">
@@ -22,26 +46,44 @@
         rows="10"
         cols="20"
         required
-      ></textarea>
+      >{{formValues.description}}</textarea>
     </div>
     <div class="input-form">
       <h4>Tecnologies</h4>
       <div class="checkbox-container">
         <div class="checkbox-wrapper">
           <div class="input-checkbox">
-            <input type="checkbox" id="node-js" name="tech" value="node-js" />
+            <input
+              type="checkbox"
+              id="node-js"
+              name="technologies"
+              value="node-js"
+              {{#if (includes formValues.technologies "node-js")}}checked{{/if}}
+            />
             <span></span>
             <label for="node-js">node js</label>
           </div>
           <div class="input-checkbox">
-            <input type="checkbox" id="react-js" name="tech" value="react-js" />
+            <input
+              type="checkbox"
+              id="react-js"
+              name="technologies"
+              value="react-js"
+              {{#if (includes formValues.technologies "react-js")}}checked{{/if}}
+            />
             <span></span>
             <label for="react-js">react js</label>
           </div>
         </div>
         <div class="checkbox-wrapper">
           <div class="input-checkbox">
-            <input type="checkbox" id="next-js" name="tech" value="next-js" />
+            <input
+              type="checkbox"
+              id="next-js"
+              name="technologies"
+              value="next-js"
+              {{#if (includes formValues.technologies "next-js")}}checked{{/if}}
+            />
             <span></span>
             <label for="next-js">next js</label>
           </div>
@@ -49,8 +91,9 @@
             <input
               type="checkbox"
               id="typescript"
-              name="tech"
+              name="technologies"
               value="typescript"
+              {{#if (includes formValues.technologies "typescript")}}checked{{/if}}
             />
             <span></span>
             <label for="typescript">typescript</label>
@@ -63,20 +106,54 @@
       <div class="upload-wrapper">
         <input
           type="file"
-          id="imageUpload"
-          name="image-upload"
+          id="image-upload"
+          name="image_upload"
           accept="image/*"
-          required
+          {{#unless isEdit}}required{{/unless}}
         />
         <span class="custom-text">choose</span>
         <i class="fa fa-paperclip"></i>
       </div>
     </div>
   </div>
-  <button type="submit">submit</button>
+  <button type="submit">{{#if isEdit}}Update{{else}}Submit{{/if}}</button>
 </form>
 
 <section id="project-list" class="project-container">
   <h1>my project</h1>
-  <div class="project-wrapper"></div>
+  {{#if projects.length}}
+    <div class="project-wrapper">
+      {{#each projects}}
+        <div class="project-card">
+          <img src="{{this.image}}" alt="project thumbnail" />
+          <div class="card-body">
+            <div class="title-card">
+              <h3>{{this.name}} - {{this.year}}</h3>
+              <p>duration: {{this.duration}}</p>
+            </div>
+            <p>{{this.description}}</p>
+            <div class="icons">
+              <i class="fa fa-android"></i>
+              <i class="fa fa-windows"></i>
+              <i class="fa fa-linux"></i>
+            </div>
+            <div class="actions">
+              <button class="edit-project" data-id="{{this.id}}">edit</button>
+              <button
+                class="delete-project"
+                data-id="{{this.id}}"
+              >delete</button>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <p class="no-project-message">No projects yet. Please add a project to see
+      it listed here.</p>
+  {{/if}}
 </section>
+
+<script src="/js/handleDateProject.js"></script>
+<script src="/js/deleteProject.js"></script>
+<script src="/js/editProject.js"></script>

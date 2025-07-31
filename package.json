@@ -9,16 +9,19 @@
   },
   "author": "",
   "license": "ISC",
-  "type": "module",
   "description": "",
   "dependencies": {
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
+    "method-override": "^3.0.0",
+    "multer": "^2.0.2",
     "pg": "^8.16.3"
   },
   "devDependencies": {
     "@types/express": "^5.0.3",
+    "@types/method-override": "^3.0.0",
+    "@types/multer": "^2.0.0",
     "@types/node": "^24.1.0",
     "@types/pg": "^8.15.4",
     "ts-node-dev": "^2.0.0",
