@@ -2,7 +2,9 @@ import { Request, Response } from "express";
 import {
   createContact,
   createProject,
+  createUser,
   deleteProjectById,
+  findUserByEmail,
   getAllProjects,
   getProjectById,
   updateProject,
@@ -11,6 +13,7 @@ import { Contact, ProjectData } from "../types";
 import { formatProjects } from "../helpers/formatProject";
 import fs from "fs";
 import path from "path";
+import bcrypt from "bcrypt";
 
 export const showHomePage = (req: Request, res: Response): void => {
   res.render("home", { title: "Home" });
@@ -194,7 +197,10 @@ export const editProject = async (
   }
 };
 
-export async function deleteProject(req: Request, res: Response) {
+export const deleteProject = async (
+  req: Request,
+  res: Response
+): Promise<any> => {
   const { id } = req.params;
 
   try {
@@ -218,4 +224,63 @@ export async function deleteProject(req: Request, res: Response) {
     console.error(error);
     res.status(500).send(error);
   }
-}
+};
+
+// authentication
+export const showLoginPage = (req: Request, res: Response) => {
+  res.render("login", { title: "Login", authStyle: true });
+};
+
+export const showRegisterPage = (req: Request, res: Response) => {
+  res.render("register", { title: "Register", authStyle: true });
+};
+
+export const handleRegister = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const { name, email, password } = req.body;
+
+  try {
+    const existingUser = await findUserByEmail(email);
+    if (existingUser) {
+      return res.render("register", { error: "Email already registered" });
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await createUser({ name, email, password: hashedPassword });
+    res.redirect("/login");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
+
+export const handleLogin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await findUserByEmail(email);
+
+    if (!user) {
+      return res.status(404).json({ error: "Invalid email or password" });
+    }
+
+    const passwordMatch = await bcrypt.compare(password, user.password);
+    if (!passwordMatch) {
+      return res.status(404).json({ error: "Invalid email or password" });
+    }
+
+    req.session.user = { id: user.id, email: user.email, name: user.name };
+    res.redirect("/project");
+  } catch (error) {
+    console.error(error);
+    res.status(500).send(error);
+  }
+};
+
+export const handleLogout = (req: Request, res: Response) => {
+  req.session.destroy(() => {
+    res.redirect("/");
+  });
+};

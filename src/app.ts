@@ -7,6 +7,7 @@ import methodOverride from "method-override";
 import indexRoutes from "./routes/index";
 import { engine } from "express-handlebars";
 import { handlebarsHelpers } from "./helpers/handlebarsHelper";
+import session from "express-session";
 
 dotenv.config();
 const app = express();
@@ -15,6 +16,14 @@ const port = 3000;
 // app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+
+app.use(
+  session({
+    secret: "your-secret-key",
+    resave: false,
+    saveUninitialized: false,
+  })
+);
 
 app.use(express.static(path.join(__dirname, "..", "public")));
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));

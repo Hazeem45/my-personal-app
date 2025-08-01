@@ -1,5 +1,5 @@
 import database from "../database";
-import { Contact, ProjectData } from "../types";
+import { Contact, ProjectData, User } from "../types";
 
 export const createContact = async (data: Contact): Promise<void> => {
   const { name, email, phone, subject, message } = data;
@@ -79,3 +79,17 @@ export const updateProject = async (
 export async function deleteProjectById(id: string) {
   await database.query("DELETE FROM projects WHERE id = $1", [id]);
 }
+
+export const findUserByEmail = async (email: string): Promise<User | null> => {
+  const result = await database.query("SELECT * FROM users WHERE email = $1", [
+    email,
+  ]);
+  return result.rows[0] || null;
+};
+
+export const createUser = async (user: User): Promise<void> => {
+  await database.query(
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3)",
+    [user.name, user.email, user.password]
+  );
+};

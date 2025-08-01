@@ -7,9 +7,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       try {
         if (confirm("Are you sure to delete this project?")) {
-          await fetch(`/project/${id}`, {
+          const response = await fetch(`/project/${id}`, {
             method: "DELETE",
-          }).then(() => location.reload());
+          });
+
+          console.log(response);
+          if (response.ok) {
+            location.reload();
+          } else {
+            alert("Gagal menghapus proyek");
+          }
         }
       } catch (error) {
         console.error("Error:", error);

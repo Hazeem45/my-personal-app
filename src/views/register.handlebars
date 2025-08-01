@@ -1,0 +1,49 @@
+<div class="container-auth register">
+  <div class="form-container form-register">
+    <form action="/register" method="post">
+      <div class="title">
+        <h1>daftar</h1>
+        <p>selamat datang!</p>
+      </div>
+      <div class="form-box">
+        <div class="input-form">
+          <label for="username">username</label>
+          <input
+            id="username"
+            type="text"
+            placeholder="Masukkan Username"
+            name="name"
+            required
+          />
+        </div>
+        <div class="input-form">
+          <label for="email">email</label>
+          <input
+            id="email"
+            type="text"
+            placeholder="Masukkan email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="input-form">
+          <label for="password">password</label>
+          <input
+            id="password"
+            type="password"
+            placeholder="Masukkan Password"
+            name="password"
+            required
+          />
+          <span
+            class="password-toggle-icon password-register"
+            data-input="password"
+          ><i class="fa fa-eye-slash"></i></span>
+        </div>
+      </div>
+      <button class="submit-auth">daftar</button>
+    </form>
+  </div>
+</div>
+
+<script src="/js/togglePassword.js"></script>
